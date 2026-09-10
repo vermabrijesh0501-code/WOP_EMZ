@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WOP-Emiza | Enterprise Warehouse Operations Platform</title>
+    <meta name="description" content="WOP-Emiza Enterprise Warehouse Operations Platform for Inward Gate Entry, RTO/B2C & B2B Returns, Barcode Scanning, Master Data Management & Live Dispatch." />
+    <meta property="og:title" content="WOP-Emiza | Enterprise Warehouse Operations Platform" />
+    <meta property="og:description" content="WOP-Emiza Enterprise Warehouse Operations Platform for Inward Gate Entry, RTO/B2C & B2B Returns, Barcode Scanning, Master Data Management & Live Dispatch." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/theme.css" />
+    <link rel="stylesheet" href="/mobile-styles.css" />
+    <script>
+      (function() {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+        try {
+          localStorage.setItem('emiza-theme', 'dark');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="dark bg-[#0F172A] text-[#F8FAFC]">
+    <div id="root"></div>
+    <script>
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

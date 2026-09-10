@@ -1,0 +1,142 @@
+/* === EMIZA-WOP Mobile & HHD Responsive Styles === */
+
+/* Mobile Sidebar Overlay & Drawer (Solid dark, no blur / zero lag) */
+.mobile-sidebar-overlay,
+[class*="sidebar"][class*="open"],
+[class*="drawer"] {
+  background: #0B141E !important;  /* solid dark, no transparency */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.6);
+}
+
+@media (max-width: 1024px) {
+  /* Sidebar becomes bottom nav on mobile when closed */
+  .sidebar:not([class*="translate-x-0"]) {
+    display: none !important;
+  }
+
+  .mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: #0B141E;
+    border-top: 1px solid #1E2C3D;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 9999;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .mobile-bottom-nav button {
+    flex: 1;
+    height: 100%;
+    background: none;
+    border: none;
+    color: #8FA0B5;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .mobile-bottom-nav button.active {
+    color: #00BDD6;
+  }
+
+  .mobile-bottom-nav svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Main content padding for bottom nav */
+  .main-content {
+    padding-bottom: 80px !important;
+  }
+  
+  /* Dashboard cards stack vertically */
+  .dashboard-stats-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  
+  /* Tables become horizontally scrollable */
+  .data-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .data-table {
+    min-width: 600px;
+    font-size: 12px;
+  }
+  
+  /* Buttons become full-width touch friendly */
+  .action-button {
+    min-height: 44px;
+  }
+  
+  /* Scan input larger for thumbs */
+  .scan-input {
+    height: 56px;
+    font-size: 16px;
+  }
+  
+  /* QC condition buttons — 2 per row on mobile */
+  .qc-buttons-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+  }
+
+  .qc-buttons-grid button {
+    min-height: 44px;
+    font-size: 12px;
+  }
+  
+  /* Hide desktop-only elements */
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .batch-header {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+}
+
+/* Touch feedback */
+button, .clickable { 
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+button:active {
+  transform: scale(0.97);
+  opacity: 0.9;
+}
+
+/* Prevent zoom on input focus (iOS) */
+input, select, textarea {
+  font-size: 16px;
+}
+
+/* Scrollbar styling for mobile tables */
+.data-table-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.data-table-container::-webkit-scrollbar-thumb {
+  background: #1E2C3D;
+  border-radius: 2px;
+}

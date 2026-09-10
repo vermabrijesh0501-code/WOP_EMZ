@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+}
+
+@font-face {
+  font-family: 'Aptos Narrow';
+  src: local('Aptos Narrow'), local('AptosNarrow'), local('Aptos');
+  font-display: swap;
+}
+
+:root, html, body, .dark {
+  --bg-page: #0F172A;
+  --bg-app: #0F172A;
+  --bg-card: #1E293B;
+  --bg-surface: #1E293B;
+  --bg-surface-muted: #152238;
+  --bg-elevated: #152238;
+  --bg-input: #152238;
+  
+  --primary-purple: #8B5CF6;
+  --primary-purple-light: #A78BFA;
+  --primary-purple-50: #3B2D54;
+  --accent-pink: #EC4899;
+  --accent-teal: #14B8A6;
+  --accent-cyan: #06B6D4;
+  
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  
+  --border: #334155;
+  --border-color: #334155;
+  --border-theme: #334155;
+  --border-color-strong: #475569;
+  --shadow: rgba(0, 0, 0, 0.4);
+  
+  --danger: #EF4444;
+  --warning: #F59E0B;
+  --success: #10B981;
+  
+  color-scheme: dark;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: 'Aptos Narrow', 'Aptos', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Global Select dark theme — force the NATIVE dropdown popup dark via
+   color-scheme (inherited from :root). Do NOT add per-option background
+   overrides here: `select option { background-color }` causes black-on-black
+   dropdown popups in Chromium. */
+select {
+  color-scheme: dark;
+  background-color: #152238 !important;
+  color: #F8FAFC !important;
+}
+
+.font-mono, .tracking-number, .awb-number, .batch-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* =========================================================================
+   Card System
+   ========================================================================= */
+.theme-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-theme);
+  border-radius: 20px;
+  box-shadow: 0 4px 24px var(--shadow);
+  padding: 24px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Base utility helpers */
+.bg-page { background-color: var(--bg-page) !important; }
+.bg-card { background-color: var(--bg-card) !important; }
+.bg-surface { background-color: var(--bg-surface) !important; }
+.bg-elevated { background-color: var(--bg-elevated) !important; }
+.bg-input { background-color: var(--bg-input) !important; }
+.border-theme { border-color: var(--border-theme) !important; }
+
+/* Custom Refined Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Selection */
+::selection {
+  background: #8B5CF6;
+  color: #FFFFFF;
+}
+
+/* Status Badges */
+.status-badge-active {
+  background-color: rgba(5, 150, 105, 0.2);
+  color: #34D399;
+}
+
+.status-badge-inactive {
+  background-color: rgba(220, 38, 38, 0.2);
+  color: #F87171;
+}
+
+.status-badge-hold {
+  background-color: rgba(217, 119, 6, 0.2);
+  color: #FBBF24;
+}
+
+/* === HEADLINES === */
+h1, h2, h3, h4,
+.page-title,
+.card-title,
+.section-title,
+.stat-label,
+.dashboard-title {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+/* Remove number input spinner arrows (stepper / auto increment-decrement) globally */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield !important;
+  appearance: textfield !important;
+}
+
+

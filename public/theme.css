@@ -1,0 +1,93 @@
+/* ============================================
+   EMIZA-WOP THEME SYSTEM - Dark Mode Design
+   ============================================ */
+
+:root, html, body, .dark {
+  --bg-page: #0F172A;
+  --bg-card: #1E293B;
+  --bg-primary: #0F172A;
+  --bg-surface: #1E293B;
+  --bg-elevated: #152238;
+  --bg-input: #152238;
+  
+  --primary-purple: #8B5CF6;
+  --primary-purple-light: #A78BFA;
+  --primary-purple-50: #3B2D54;
+  --accent-pink: #EC4899;
+  --accent-teal: #14B8A6;
+  --accent-cyan: #06B6D4;
+  
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  
+  --border: #334155;
+  --border-color: #334155;
+  --border-theme: #334155;
+  --border-color-strong: #475569;
+  --shadow: rgba(0, 0, 0, 0.4);
+  
+  --danger: #EF4444;
+  --warning: #F59E0B;
+  --success: #10B981;
+  --overlay: rgba(0, 0, 0, 0.8);
+  
+  color-scheme: dark;
+}
+
+html, body, #root {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: 'Aptos Narrow', 'Aptos', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+select {
+  background-color: #152238 !important;
+  color: #F8FAFC !important;
+}
+
+select option, select optgroup {
+  background-color: #1E293B !important;
+  color: #F8FAFC !important;
+}
+
+/* Card System */
+.finity-card, .theme-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: 0 4px 24px var(--shadow);
+  padding: 24px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.finity-card:hover, .theme-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Utility classes */
+.bg-page { background-color: var(--bg-page) !important; }
+.bg-card { background-color: var(--bg-card) !important; }
+.bg-surface { background-color: var(--bg-surface) !important; }
+.bg-elevated { background-color: var(--bg-elevated) !important; }
+.bg-input { background-color: var(--bg-input) !important; }
+.border-theme { border-color: var(--border-color) !important; }
+.text-primary { color: var(--text-primary) !important; }
+.text-secondary { color: var(--text-secondary) !important; }
+.text-muted { color: var(--text-muted) !important; }
+
+/* === HEADLINES === */
+h1, h2, h3, h4,
+.page-title,
+.card-title,
+.section-title,
+.stat-label,
+.dashboard-title {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
