@@ -92,8 +92,8 @@ export const ReturnsModule: React.FC<ReturnsModuleProps> = ({
   onCloseCreateModal,
   onNavigateTab,
 }) => {
-  // EXACTLY 4 TABS: 'open_batch' | 'closed_batch' | 'reports' | 'dashboard'
-  const [activeMainTab, setActiveMainTab] = useState<'open_batch' | 'closed_batch' | 'reports' | 'dashboard'>('open_batch');
+  // EXACTLY 2 TABS IN RTO SECTION: 'open_batch' | 'closed_batch'
+  const [activeMainTab, setActiveMainTab] = useState<'open_batch' | 'closed_batch'>('open_batch');
 
   // Sub-view in Open Batch: 'list' (default to see all open batches) | 'scan' | 'create' | 'close'
   const [openBatchView, setOpenBatchView] = useState<'list' | 'scan' | 'create' | 'close'>('list');
@@ -592,8 +592,8 @@ export const ReturnsModule: React.FC<ReturnsModuleProps> = ({
         </div>
       </div>
 
-      {/* EXACTLY 4 TABS: Open Batch | Closed Batch | Report & Manifest | Dashboard */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-elevated p-1 rounded-xl border border-theme">
+      {/* 2 TABS IN RTO SECTION: Open Batch | Closed Batch */}
+      <div className="grid grid-cols-2 gap-2 bg-elevated p-1 rounded-xl border border-theme max-w-md">
         {/* TAB 1: Open Batch */}
         <button
           id="tab-open-batch"
@@ -601,13 +601,13 @@ export const ReturnsModule: React.FC<ReturnsModuleProps> = ({
             setActiveMainTab('open_batch');
             setOpenBatchView('list');
           }}
-          className={`px-3 py-2 rounded-lg font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+          className={`px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer ${
             activeMainTab === 'open_batch'
               ? 'bg-[#123B5D] dark:bg-indigo-600 text-white shadow-xs'
               : 'text-secondary hover:text-primary hover:bg-surface'
           }`}
         >
-          <Unlock className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+          <Unlock className="w-4 h-4 text-emerald-500 shrink-0" />
           <span className="truncate">Open Batch ({openBatches.length})</span>
           {openBatches.length > 0 && (
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
@@ -618,42 +618,14 @@ export const ReturnsModule: React.FC<ReturnsModuleProps> = ({
         <button
           id="tab-closed-batch"
           onClick={() => setActiveMainTab('closed_batch')}
-          className={`px-3 py-2 rounded-lg font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+          className={`px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer ${
             activeMainTab === 'closed_batch'
               ? 'bg-[#123B5D] dark:bg-indigo-600 text-white shadow-xs'
               : 'text-secondary hover:text-primary hover:bg-surface'
           }`}
         >
-          <Lock className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+          <Lock className="w-4 h-4 text-amber-500 shrink-0" />
           <span className="truncate">Closed Batch ({closedBatches.length})</span>
-        </button>
-
-        {/* TAB 3: Report & Manifest */}
-        <button
-          id="tab-report-manifest"
-          onClick={() => setActiveMainTab('reports')}
-          className={`px-3 py-2 rounded-lg font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-            activeMainTab === 'reports'
-              ? 'bg-[#123B5D] dark:bg-indigo-600 text-white shadow-xs'
-              : 'text-secondary hover:text-primary hover:bg-surface'
-          }`}
-        >
-          <FileText className="w-3.5 h-3.5 text-blue-500 shrink-0" />
-          <span className="truncate">Report & Manifest</span>
-        </button>
-
-        {/* TAB 4: Dashboard */}
-        <button
-          id="tab-dashboard"
-          onClick={() => setActiveMainTab('dashboard')}
-          className={`px-3 py-2 rounded-lg font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-            activeMainTab === 'dashboard'
-              ? 'bg-[#123B5D] dark:bg-indigo-600 text-white shadow-xs'
-              : 'text-secondary hover:text-primary hover:bg-surface'
-          }`}
-        >
-          <LayoutDashboard className="w-3.5 h-3.5 text-purple-500 shrink-0" />
-          <span className="truncate">Dashboard</span>
         </button>
       </div>
 

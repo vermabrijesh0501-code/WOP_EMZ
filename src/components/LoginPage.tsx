@@ -12,7 +12,7 @@ export const LoginPage: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
   const [email, setEmail] = useState('verma.brijesh0501@gmail.com');
-  const [password, setPassword] = useState('admin123');
+  const [password, setPassword] = useState('admin');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
