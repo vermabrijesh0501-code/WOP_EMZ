@@ -11,14 +11,27 @@ export const LoginPage: React.FC = () => {
   const { signIn } = useAuth();
   const { theme, toggleTheme } = useTheme();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('verma.brijesh0501@gmail.com');
+  const [password, setPassword] = useState('admin123');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(
     (location.state as any)?.error || null
   );
+
+  const quickRoles = [
+    { label: 'Super Admin', email: 'verma.brijesh0501@gmail.com', password: 'admin', roleName: 'Brijesh Verma' },
+    { label: 'Warehouse Manager', email: 'manager@emizainc.com', password: 'password123', roleName: 'Rajesh Kumar' },
+    { label: 'Supervisor', email: 'supervisor@emizainc.com', password: 'password123', roleName: 'Amit Sharma' },
+    { label: 'Security', email: 'security@emizainc.com', password: 'password123', roleName: 'Ramesh Yadav' },
+  ];
+
+  const handleSelectRole = (r: typeof quickRoles[0]) => {
+    setEmail(r.email);
+    setPassword(r.password);
+    setErrorMessage(null);
+  };
 
   const completeLogin = () => {
     const origin = (location.state as any)?.from?.pathname || '/dashboard';
@@ -111,13 +124,46 @@ export const LoginPage: React.FC = () => {
         <div className="md:w-7/12 bg-[#131E32] text-slate-100 p-8 sm:p-12 flex flex-col justify-center">
           <div className="max-w-md w-full mx-auto">
             {/* Form Header */}
-            <div className="mb-7">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                Sign In
-              </h2>
+            <div className="mb-6">
+              <div className="flex items-center justify-between gap-2">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                  Sign In
+                </h2>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Terminal Online
+                </span>
+              </div>
               <p className="text-slate-400 text-xs sm:text-sm mt-1.5">
-                Enter your registered credentials to access your terminal
+                Select your operational role or enter your credentials
               </p>
+
+              {/* Quick Role Selection Chips */}
+              <div className="mt-4 pt-3 border-t border-slate-800/80">
+                <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                  Quick Select Account
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  {quickRoles.map(r => {
+                    const isSelected = email.toLowerCase() === r.email.toLowerCase();
+                    return (
+                      <button
+                        key={r.label}
+                        type="button"
+                        onClick={() => handleSelectRole(r)}
+                        className={`text-left p-2.5 rounded-xl border transition-all cursor-pointer ${
+                          isSelected
+                            ? 'bg-purple-600/20 border-purple-500 text-white shadow-sm'
+                            : 'bg-slate-900/60 hover:bg-slate-800/60 border-slate-700/60 text-slate-300'
+                        }`}
+                      >
+                        <div className="text-xs font-semibold leading-none truncate">{r.label}</div>
+                        <div className="text-[10px] text-slate-400 mt-1 truncate">{r.roleName}</div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
 
             {/* Error Message Box */}

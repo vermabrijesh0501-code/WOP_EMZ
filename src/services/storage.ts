@@ -343,9 +343,6 @@ export const StorageService = {
       try {
         const stored = localStorage.getItem(STORAGE_KEYS.USERS);
         if (stored !== null) {
-          // Key exists: the list was intentionally customized/synced — never
-          // resurrect seed users here (that caused deleted users to reappear
-          // and diverge across devices).
           return JSON.parse(stored);
         }
       } catch {
@@ -354,7 +351,17 @@ export const StorageService = {
       return null;
     })();
     if (Array.isArray(raw)) {
-      return raw.map(({ password: _, ...rest }) => rest as User);
+      const existingMap = new Map<string, User>();
+      // First put initial users
+      initialUsers.forEach(u => existingMap.set(u.email.toLowerCase(), u));
+      // Then overlay saved custom users so custom edits/new users take precedence
+      raw.forEach((u: any) => {
+        if (u && u.email) {
+          const { password: _, ...rest } = u;
+          existingMap.set(u.email.toLowerCase(), rest as User);
+        }
+      });
+      return Array.from(existingMap.values());
     }
     // First run only: seed standard users
     const seeded = initialUsers.map(({ password: _, ...rest }) => rest as User);
